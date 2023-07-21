@@ -1,8 +1,7 @@
 import express from "express"; // ESModules
-// const express = require('express') -> commonjs
-// import "dotenv/config";
-
 require("../mongo");
+
+import characterRouter from "./routes/characters";
 
 const app = express();
 const cors = require("cors");
@@ -12,11 +11,13 @@ app.use(express.json()); // middleware que transforma la req.body a un json
 
 const PORT = process.env.PORT;
 
-app.get("/ping", (_req, res) => {
-  // el guion bajo es para no usarla.
+// el guion bajo es para no usarla.
+app.get("/", (_req, res) => {
   console.log("someone pinged here!!");
-  res.send("ponga");
+  res.send("Bienvenido a la api de valorant. Accede a /api/characters");
 });
+
+app.use("/api/characters", characterRouter);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
