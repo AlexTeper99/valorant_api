@@ -1,5 +1,6 @@
 import express from "express";
 import { Character } from "../models";
+import { handleErrors } from "../middlewares";
 
 const router = express.Router();
 
@@ -11,14 +12,17 @@ router.get("/", (_req, res) => {
   });
 });
 
-router.get("/:id", (req, res) => {
+router.get("/:id", (req, res, next) => {
   const { id } = req.params;
 
   Character.findById(id)
     .then((character) => {
       if (character) return res.json(character);
+      else return res.status(404).end();
     })
-    .catch((_err) => res.status(500).json({ message: "Server Error" }));
+    .catch(next);
 });
+
+router.use(handleErrors);
 
 export default router;
