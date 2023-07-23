@@ -11,4 +11,14 @@ router.get("/", (_req, res) => {
   });
 });
 
+router.get("/:id", (req, res) => {
+  const { id } = req.params;
+
+  Character.findById(id)
+    .then((character) => {
+      if (character) return res.json(character);
+    })
+    .catch((_err) => res.status(500).json({ message: "Server Error" }));
+});
+
 export default router;

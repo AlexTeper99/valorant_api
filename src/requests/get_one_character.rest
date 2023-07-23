@@ -1,0 +1,1 @@
+GET http://localhost:3000/api/characters/64ba0219706bc385163409f4 HTTP/1.1
