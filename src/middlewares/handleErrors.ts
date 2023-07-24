@@ -14,7 +14,6 @@ export const handleErrors = (
       error: error.message,
     });
   } else {
-    console.log("Another error");
-    response.status(500).send({ error: error.name });
+    response.status(500).send({ error: error.message });
   }
 };

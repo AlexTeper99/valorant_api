@@ -28,7 +28,7 @@ function parseName(name: any): string {
 
 function parseRol(rol: any): string {
   if (!isString(rol) || !isRol(rol)) {
-    throw new Error("Incorrect or missing name");
+    throw new Error("Incorrect or missing Rol");
   }
 
   return rol;
