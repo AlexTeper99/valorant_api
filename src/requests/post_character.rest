@@ -1,0 +1,35 @@
+POST http://localhost:3000/api/characters HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Jett",
+  "rol": "Initiator",
+  "bio": "Jett es una agente móvil y letal de Corea del Sur que utiliza su habilidad para el viento para moverse por el campo de batalla y tomar ventaja de sus enemigos.",
+  "skills": [
+    {
+      "key": "Q",
+      "name": "Corriente ascendente",
+      "description": "Jett salta en el aire. Puede volver a activar la habilidad para caer lentamente.",
+      "icon": "/images/jett/q.png"
+    },
+    {
+      "key": "E",
+      "name": "Viento de cola",
+      "description": "Jett avanza rápidamente en la dirección en la que se está moviendo. Si Jett se detiene, se desvanece.",
+      "icon": "/images/jett/e.png"
+    },
+    {
+      "key": "C",
+      "name": "Cortina de humo",
+      "description": "Jett lanza una granada que emite una cortina de humo que bloquea la visión. Jett puede volver a activar la habilidad para lanzar tres corrientes ascendentes adicionales para subir por encima del humo.",
+      "icon": "/images/jett/c.png"
+    },
+    {
+      "key": "X",
+      "name": "Tormenta de cuchillos",
+      "description": "Jett lanza una ráfaga de cuchillos que infligen daño mortal a los enemigos. Jett puede volver a activar la habilidad para lanzar tres cuchillos adicionales.",
+      "icon": "/images/jett/x.png"
+    }
+  ],
+  "image": "/images/jett.png"
+}

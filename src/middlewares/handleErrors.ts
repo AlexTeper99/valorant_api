@@ -9,6 +9,10 @@ export const handleErrors = (
   if (error.name === "CastError") {
     console.log("Cast error");
     response.status(400).send({ error: "id used is malformed" });
+  } else if (error.name === "ValidationError") {
+    response.status(409).send({
+      error: error.message,
+    });
   } else {
     console.log("Another error");
     response.status(500).send({ error: error.name });
