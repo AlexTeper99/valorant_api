@@ -27,7 +27,7 @@ router.get("/:id", (req, res, next) => {
 });
 
 //POST ONE NEW CHARACTER
-router.post("/", (req, res, next) => {
+router.post("/", async (req, res, next) => {
   try {
     const auxCharacter = toNewCharacter(req.body); //validation
 
@@ -38,6 +38,14 @@ router.post("/", (req, res, next) => {
       skills: auxCharacter.skills,
       image: auxCharacter.image,
     });
+
+    const characterAlredyExist = await Character.findOne({
+      name: newCharacter.name,
+    });
+
+    if (characterAlredyExist) {
+      return res.status(409).send("Character alredy exist");
+    }
 
     newCharacter.save().then((savedCharacter) => {
       res.json(savedCharacter);

@@ -46,8 +46,36 @@ const parseString = (stringParam: string, messageError: string): string => {
 
 //----------------------------------------------
 
+function isSkill(object: any): object is ISkill {
+  return (
+    "key" in object &&
+    "name" in object &&
+    "description" in object &&
+    typeof object.key === "string" &&
+    typeof object.name === "string" &&
+    typeof object.description === "string" &&
+    (typeof object.icon === "undefined" || typeof object.icon === "string") &&
+    (typeof object.video === "undefined" || typeof object.video === "string")
+  );
+}
+
 function parseSkills(skills: any): ISkill[] {
-  //TODO: add logic
+  if (Array.isArray(skills)) {
+    let i: number = 0;
+    let isSkillFormat = true;
+
+    while (i < skills.length && isSkillFormat) {
+      isSkillFormat = isSkill(skills[i]);
+
+      if (!isSkillFormat) {
+        throw new Error("Element " + i + " is not Skill Format");
+      }
+
+      i++;
+    }
+  } else {
+    throw new Error("Skills must be an array");
+  }
 
   return skills;
 }

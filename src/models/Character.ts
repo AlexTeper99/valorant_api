@@ -25,7 +25,6 @@ const characterSchema = new Schema<ICharacter, CharacterModelType>({
   skills: [skillSchema],
 });
 
-//TODO: volver a buscar para que servia esto
 skillSchema.set("toJSON", {
   transform: (_document, returnedObject) => {
     returnedObject.id = returnedObject._id;
