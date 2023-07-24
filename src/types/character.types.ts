@@ -13,6 +13,8 @@ export interface ICharacter {
   bio: string;
   skills: ISkill[];
   image?: string;
+  background?: string;
+  iconRol?: string;
 }
 
 export enum Rol {

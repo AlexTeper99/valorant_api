@@ -31,5 +31,7 @@ Content-Type: application/json
       "icon": "/images/jett/x.png"
     }
   ],
-  "image": "/images/jett.png"
+  "image": "/images/jett.png",
+  "background": "/images/background.png",
+  "iconRol": "iconRol.png"
 }

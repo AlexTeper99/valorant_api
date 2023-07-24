@@ -36,13 +36,13 @@ function parseRol(rol: any): string {
 
 //im tired of individual parses so i create a generical
 
-const parseString = (stringParam: string, messageError: string): string => {
-  if (!isString(stringParam)) {
-    throw new Error(messageError);
-  }
+// const parseString = (stringParam: string, messageError: string): string => {
+//   if (!isString(stringParam)) {
+//     throw new Error(messageError);
+//   }
 
-  return stringParam;
-};
+//   return stringParam;
+// };
 
 //----------------------------------------------
 
@@ -57,6 +57,14 @@ function isSkill(object: any): object is ISkill {
     (typeof object.icon === "undefined" || typeof object.icon === "string") &&
     (typeof object.video === "undefined" || typeof object.video === "string")
   );
+}
+
+function addConditionalAttribute(attribute: any, type: any): boolean {
+  let aux = typeof attribute !== "undefined" && typeof attribute === type;
+
+  console.log(aux);
+
+  return aux;
 }
 
 function parseSkills(skills: any): ISkill[] {
@@ -81,13 +89,26 @@ function parseSkills(skills: any): ISkill[] {
 }
 
 export const toNewCharacter = (object: any): ICharacter => {
-  const newCharacter: ICharacter = {
+  let newCharacter: ICharacter = {
     bio: parseBio(object.bio),
     name: parseName(object.name),
     rol: parseRol(object.rol),
     skills: parseSkills(object.skills),
-    image: parseString(object.image, "Incorrect or missing image"),
   };
+
+  //WHY THIS ISNT WORKING?
+  if (addConditionalAttribute(object.background, "string")) {
+    newCharacter.background = object.background;
+    console.log(newCharacter.background);
+  }
+
+  if (addConditionalAttribute(object.iconRol, "string")) {
+    newCharacter.iconRol = object.iconRol;
+  }
+
+  if (addConditionalAttribute(object.image, "string")) {
+    newCharacter.image = object.image;
+  }
 
   return newCharacter;
 };

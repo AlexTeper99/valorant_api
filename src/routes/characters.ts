@@ -37,6 +37,8 @@ router.post("/", async (req, res, next) => {
       rol: auxCharacter.rol,
       skills: auxCharacter.skills,
       image: auxCharacter.image,
+      iconRol: auxCharacter.iconRol,
+      background: auxCharacter.background,
     });
 
     const characterAlredyExist = await Character.findOne({

@@ -22,6 +22,8 @@ const characterSchema = new Schema<ICharacter, CharacterModelType>({
   rol: { type: String, required: true },
   bio: { type: String, required: true },
   image: { type: String, required: false },
+  iconRol: { type: String, required: false },
+  background: { type: String, required: false },
   skills: [skillSchema],
 });
 
