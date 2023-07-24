@@ -55,6 +55,15 @@ router.post("/", async (req, res, next) => {
   }
 });
 
+router.delete("/delete/all", async (_req, res, next) => {
+  try {
+    await Character.deleteMany({});
+    res.status(200).send("All characters were deleted from the database");
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.use(handleErrors);
 
 export default router;
