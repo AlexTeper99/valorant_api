@@ -1,4 +1,4 @@
-import { ICharacter, ISkill, Rol } from "../types";
+import { ISkill, NewCharacterEntry, Rol } from "../types";
 
 //validate data types
 const isString = (string: string): boolean => {
@@ -36,13 +36,13 @@ function parseRol(rol: any): string {
 
 //im tired of individual parses so i create a generical
 
-// const parseString = (stringParam: string, messageError: string): string => {
-//   if (!isString(stringParam)) {
-//     throw new Error(messageError);
-//   }
+const parseString = (stringParam: string, messageError: string): string => {
+  if (!isString(stringParam)) {
+    throw new Error(messageError);
+  }
 
-//   return stringParam;
-// };
+  return stringParam;
+};
 
 //----------------------------------------------
 
@@ -88,22 +88,56 @@ function parseSkills(skills: any): ISkill[] {
   return skills;
 }
 
-export const toNewCharacter = (object: any): ICharacter => {
-  let newCharacter: ICharacter = {
+function isValidHexColor(input: any): boolean {
+  if (typeof input === "string") {
+    // const regex = /^([0-9a-f]{3}){1,2}$/i;
+    // return regex.test(input);
+    return true;
+  }
+
+  return false;
+}
+
+const parseBackgroundGradientColors = (
+  backgroundGradientColors: any
+): string[] => {
+  if (Array.isArray(backgroundGradientColors)) {
+    let i: number = 0;
+    let isHexColor = true;
+
+    while (i < backgroundGradientColors.length && isHexColor) {
+      isHexColor = isValidHexColor(backgroundGradientColors[i]);
+
+      if (!isHexColor) {
+        throw new Error("Element " + i + " is not HexColor Format");
+      }
+      i++;
+    }
+  } else {
+    throw new Error("BackgroundGradientColors must be an array");
+  }
+
+  return backgroundGradientColors;
+};
+
+export const toNewCharacter = (object: any): NewCharacterEntry => {
+  let newCharacter: NewCharacterEntry = {
     bio: parseBio(object.bio),
     name: parseName(object.name),
     rol: parseRol(object.rol),
     skills: parseSkills(object.skills),
+    image: parseString(object.image, "Image must be a string"),
+    background: parseString(object.background, "Background must be a string"),
+    displayIcon: parseString(object.displayIcon, "Image must be a string"),
+    backgroundGradientColors: parseBackgroundGradientColors(
+      object.backgroundGradientColors
+    ),
   };
 
   //WHY THIS ISNT WORKING?
   if (addConditionalAttribute(object.background, "string")) {
     newCharacter.background = object.background;
     console.log(newCharacter.background);
-  }
-
-  if (addConditionalAttribute(object.iconRol, "string")) {
-    newCharacter.iconRol = object.iconRol;
   }
 
   if (addConditionalAttribute(object.image, "string")) {

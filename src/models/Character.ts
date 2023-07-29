@@ -21,9 +21,10 @@ const characterSchema = new Schema<ICharacter, CharacterModelType>({
   name: { type: String, required: true },
   rol: { type: String, required: true },
   bio: { type: String, required: true },
-  image: { type: String, required: false },
-  iconRol: { type: String, required: false },
+  image: { type: String, required: true },
   background: { type: String, required: false },
+  displayIcon: { type: String, required: true },
+  backgroundGradientColors: { type: [String], required: true },
   skills: [skillSchema],
 });
 

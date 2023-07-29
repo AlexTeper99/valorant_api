@@ -1,8 +1,10 @@
+import { Types } from "mongoose";
+
 export interface ISkill {
   key: string;
   name: string;
   description: string;
-  icon?: string;
+  icon: string;
   video?: string;
 }
 
@@ -11,10 +13,11 @@ export interface ICharacter {
   name: string;
   rol: string;
   bio: string;
+  image: string;
+  background: string;
+  displayIcon: string;
+  backgroundGradientColors: Types.Array<string>;
   skills: ISkill[];
-  image?: string;
-  background?: string;
-  iconRol?: string;
 }
 
 export enum Rol {
@@ -23,6 +26,6 @@ export enum Rol {
   Duelist = "Duelist",
   Controller = "Controller",
 }
-
-//TODO: Revisar para que servia esto
-export type NewCharacterEntry = Omit<ICharacter, "id">;
+export type NewCharacterEntry = Omit<ICharacter, "backgroundGradientColors"> & {
+  backgroundGradientColors: string[];
+};

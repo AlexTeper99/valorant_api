@@ -5,6 +5,16 @@ Content-Type: application/json
   "name": "Jett",
   "rol": "Initiator",
   "bio": "Jett es una agente móvil y letal de Corea del Sur que utiliza su habilidad para el viento para moverse por el campo de batalla y tomar ventaja de sus enemigos.",
+  "image": "/images/jett.png",
+  "background": "/images/background.png",
+  "displayIcon": "displayIcon.png",
+  "backgroundGradientColors": 
+      [
+        "c7f458ff",
+        "d56324ff",
+        "3a2656ff",
+        "3a7233ff"
+      ],
   "skills": [
     {
       "key": "Q",
@@ -30,8 +40,5 @@ Content-Type: application/json
       "description": "Jett lanza una ráfaga de cuchillos que infligen daño mortal a los enemigos. Jett puede volver a activar la habilidad para lanzar tres cuchillos adicionales.",
       "icon": "/images/jett/x.png"
     }
-  ],
-  "image": "/images/jett.png",
-  "background": "/images/background.png",
-  "iconRol": "iconRol.png"
+  ]
 }

@@ -32,13 +32,14 @@ router.post("/", async (req, res, next) => {
     const auxCharacter = toNewCharacter(req.body); //validation
 
     const newCharacter = new Character({
-      bio: auxCharacter.bio,
       name: auxCharacter.name,
       rol: auxCharacter.rol,
-      skills: auxCharacter.skills,
+      bio: auxCharacter.bio,
       image: auxCharacter.image,
-      iconRol: auxCharacter.iconRol,
       background: auxCharacter.background,
+      displayIcon: auxCharacter.displayIcon,
+      backgroundGradientColors: auxCharacter.backgroundGradientColors,
+      skills: auxCharacter.skills,
     });
 
     const characterAlredyExist = await Character.findOne({
