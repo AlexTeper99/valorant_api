@@ -14,7 +14,7 @@ const PORT = process.env.PORT;
 app.get("/", (_req, res) => {
   console.log("someone pinged here!!");
   res.send(
-    "Welcome to my Valorant Api. Access to /api/characters or to /api/characters/:id"
+    "Welcome to my Valorant Api. Access to /api/characters or to /api/characters/:id to view information"
   );
 });
 
